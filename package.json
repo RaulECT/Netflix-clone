@@ -10,5 +10,14 @@
   "license": "ISC",
   "keywords": [
     "back-end"
-  ]
+  ],
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "graphql-yoga": "^1.18.3",
+    "mongoose": "^5.9.7"
+  },
+  "devDependencies": {
+    "eslint": "^6.8.0",
+    "nodemon": "^2.0.2"
+  }
 }
