@@ -1,0 +1,14 @@
+{
+  "name": "netflix-clone-back",
+  "version": "1.0.0",
+  "description": "A Netflix clone app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Raul Canul",
+  "license": "ISC",
+  "keywords": [
+    "back-end"
+  ]
+}
