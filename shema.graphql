@@ -1,0 +1,153 @@
+interface Video {
+  _id: ID!
+  name: String!
+  image_cover_uri: String!
+  category: CATEGORIES!
+  trailer_uri: String!
+  date: Date!
+  views: Int!
+  rating: Float!
+  is_avaible: Boolean
+}
+
+type Query{
+  getVideos: [Video]!
+  getMovies: [Movie]!
+  getEpisodes: [Episode]!
+  getRecents: [Video]!
+  getBestRated: [Video]!
+  getByCategory(category: String!): [Video]!
+  getByName(name: String!): [Video]!
+  getUserById(id: ID!): User!
+}
+
+type Mutation{
+  createUser(data: UserCreateInput!): User!
+  createMovie(data: MovieCreateInput!): Movie!
+  createSerie(data: SerieCreateInput!): Serie!
+  updateUser(data: UserUpdateInput!): User!
+  updateMovie(data: MovieUpdateInput!): Movie!
+  updateSerie(data: SerieUpdateInput!): Serie!
+  deleteUser(id: ID!): User!
+  deleteMovie(id: ID!): Movie!
+  deleteSerie(id: ID!): Serie!
+}
+
+type Movie implements Video{
+  _id: ID!
+  name: String!
+  description: String!
+  duration: Int!
+  image_cover_uri: String!
+  category: CATEGORIES!
+  date: Date!
+  rating: Float!
+  video_uri: String!
+  trailer_uri: String!
+  views: Int!
+  is_avaible: Boolean
+}
+
+type Serie implements Video{
+  _id: ID!
+  name: String!
+  image_cover_uri: String!
+  category: CATEGORIES!
+  episodes: [Episode]!
+  rating: Float!
+  trailer_uri: String!
+  date: Date!
+  views: Int!
+  is_avaible: Boolean
+}
+
+type Episode{
+  _id: ID!
+  serie: Serie!
+  name: String!
+  image_cover_uri: String!
+  duration: Int!
+  description: String!
+  emition_date: Date!
+  video_uri: String!
+  views: Int!
+  is_avaible: Boolean
+}
+
+type User{
+  _id: ID!
+  first_name: String!
+  last_name: String!
+  password: String!
+  email: String!
+  series: [Serie]!
+  movies: [Movie]!
+  profile_img: String
+}
+
+input UserCreateInput{
+  first_name: String!
+  last_name: String!
+  password: String!
+  email: String!
+  profile_img: String
+}
+
+input MovieCreateInput{
+  name: String!
+  description: String!
+  duration: Int!
+  image_cover_uri: String!
+  category: CATEGORIES!
+  date: Date!
+  video_uri: String!
+  trailer_uri: String!
+  is_avaible: Boolean
+}
+
+input SerieCreateInput{
+  name: String!
+  image_cover_uri: String!
+  category: CATEGORIES!
+  episodes: [Episode]
+  trailer_uri: String!
+  date: Date!
+  is_avaible: Boolean
+}
+
+input UserUpdateInput{
+  first_name: String
+  last_name: String
+  password: String
+  email: String
+  series: [Serie]
+  movies: [Movie]
+  profile_img: String
+}
+
+input MovieUpdateInput{
+  name: String
+  description: String
+  image_cover_uri: String
+  rating: Float
+  video_uri: String
+  trailer_uri: String
+  views: Int
+  is_avaible: Boolean
+}
+
+input SerieUpdateInput{
+  name: String
+  image_cover_uri: String
+  episodes: [Episode]
+  rating: Float
+  trailer_uri: String
+  views: Int
+  is_avaible: Boolean
+}
+
+enum CATEGORIES{
+  Action
+  Romance
+  Comedy
+}
