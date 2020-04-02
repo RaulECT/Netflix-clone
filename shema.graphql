@@ -8,7 +8,7 @@ interface Video {
   views: Int!
   rating: Float!
   is_avaible: Boolean
-  liked_by: [ID]!
+  liked_by: [User]!
 }
 
 type Query{
@@ -61,7 +61,7 @@ type Serie implements Video{
   date: String!
   views: Int!
   is_avaible: Boolean
-  liked_by: [ID]!
+  liked_by: [User]!
 }
 
 type Episode{
