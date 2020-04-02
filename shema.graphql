@@ -8,6 +8,7 @@ interface Video {
   views: Int!
   rating: Float!
   is_avaible: Boolean
+  liked_by: [ID]!
 }
 
 type Query{
@@ -46,6 +47,7 @@ type Movie implements Video{
   trailer_uri: String!
   views: Int!
   is_avaible: Boolean
+  liked_by: [ID]!
 }
 
 type Serie implements Video{
@@ -59,6 +61,7 @@ type Serie implements Video{
   date: String!
   views: Int!
   is_avaible: Boolean
+  liked_by: [ID]!
 }
 
 type Episode{
@@ -120,6 +123,9 @@ input UserUpdateInput{
   password: String
   email: String
   profile_img: String
+  series: [ID]
+  movies: [ID]
+
 }
 
 input MovieUpdateInput{
@@ -131,6 +137,7 @@ input MovieUpdateInput{
   trailer_uri: String
   views: Int
   is_avaible: Boolean
+  liked_by: [ID]
 }
 
 input SerieUpdateInput{
@@ -140,6 +147,8 @@ input SerieUpdateInput{
   trailer_uri: String
   views: Int
   is_avaible: Boolean
+  episodes: [ID]
+  liked_by: [ID]
 }
 
 enum CATEGORIES{
