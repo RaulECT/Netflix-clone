@@ -47,7 +47,7 @@ type Movie implements Video{
   trailer_uri: String!
   views: Int!
   is_avaible: Boolean
-  liked_by: [ID]!
+  liked_by: [User]!
 }
 
 type Serie implements Video{
