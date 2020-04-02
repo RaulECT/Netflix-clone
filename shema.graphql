@@ -86,6 +86,7 @@ type User{
   series: [Serie]!
   movies: [Movie]!
   profile_img: String
+  is_active: Boolean!
 }
 
 input UserCreateInput{
