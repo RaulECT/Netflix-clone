@@ -44,6 +44,6 @@ const SerieSchema = new Schema({
         type: [Schema.Types.ObjectId],
         ref: 'users'
     }
-});
+}, { timestamps: true });
 
 module.exports = mongoose.model( 'series', SerieSchema );
