@@ -14,6 +14,7 @@ interface Video {
 type Query{
   getVideos: [Video]!
   getMovies: [Movie]!
+  getSeries: [Serie]!
   getEpisodes: [Episode]!
   getRecents: [Video]!
   getBestRated: [Video]!
