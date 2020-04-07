@@ -14,8 +14,14 @@ const updateById = (id, data) => Users
     .populate({ path: 'series', model: 'series' })
     .populate( { path: 'movies', model: 'movies' } );
 
+const deleteById = _id => Users
+    .findByIdAndDelete( {_id} )
+    .populate({ path: 'series', model: 'series' })
+    .populate( { path: 'movies', model: 'movies' } );
+
 module.exports = {
     getOneUserById,
     createOneUser,
     updateById,
+    deleteById,
 };

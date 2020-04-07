@@ -1,4 +1,4 @@
-const { createOneUser, updateById } = require( '../../services/UserService' );
+const { createOneUser, updateById, deleteById } = require( '../../services/UserService' );
 
 const createUser = async (_, { data }) => {
     const user = await createOneUser( data );
@@ -10,7 +10,13 @@ const updateUser = async (_, { data, id }) => {
     return user;
 };
 
+const deleteUser = async (_, { id }) => {
+    const user = await deleteById( id );
+    return user;
+};
+
 module.exports = {
     createUser,
     updateUser,
+    deleteUser,
 };
