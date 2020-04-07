@@ -1,4 +1,4 @@
-const { createOneEpisode, updateById } = require( '../../services/EpisodeService' );
+const { createOneEpisode, updateById, deleteById } = require( '../../services/EpisodeService' );
 
 const createEpisode = async (_, { data }) => {
     const episode = await createOneEpisode( data );
@@ -10,7 +10,13 @@ const updateEpisode = async (_, { id, data }) => {
     return episode;
 };
 
+const deleteEpisode = async (_, { id }) => {
+    const episode = await deleteById( id );
+    return episode;
+};
+
 module.exports = {
     createEpisode,
     updateEpisode,
+    deleteEpisode,
 };
