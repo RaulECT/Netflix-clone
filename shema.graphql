@@ -31,7 +31,7 @@ type Mutation{
   createEpisode(data: EpisodeCreateInput): Episode!
   updateUser(data: UserUpdateInput!, id: ID!): User!
   updateMovie(data: MovieUpdateInput!, id: ID!): Movie!
-  updateSerie(data: SerieUpdateInput!): Serie!
+  updateSerie(data: SerieUpdateInput!, id: ID!): Serie!
   updateEpisode(data: EpisodeUpdateInput): Episode!
   deleteUser(id: ID!): User!
   deleteMovie(id: ID!): Movie!
