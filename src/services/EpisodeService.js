@@ -14,9 +14,12 @@ const deleteById = _id => Episode
     .findByIdAndDelete( {_id} )
     .populate({ path: 'serie', model: 'series' });
 
+const deleteCollectionByIds = collection => Episode.deleteMany({ _id: { $in: collection } });
+
 module.exports = {
     createOneEpisode,
     getOneEpisodeById,
     updateById,
     deleteById,
+    deleteCollectionByIds,
 };
