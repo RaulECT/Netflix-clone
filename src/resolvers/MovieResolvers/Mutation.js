@@ -1,4 +1,4 @@
-const { createOneMovie, updateById } = require( '../../services/MovieService' );
+const { createOneMovie, updateById, deleteById } = require( '../../services/MovieService' );
 
 const createMovie = async (_, { data }) => {
     const movie = await createOneMovie( data );
@@ -10,7 +10,13 @@ const updateMovie = async (_, { data, id }) => {
     return movie;
 };
 
+const deleteMovie = async (_, { id }) => {
+    const movie = await deleteById( id );
+    return movie;
+};
+
 module.exports = {
     createMovie,
     updateMovie,
+    deleteMovie
 };
