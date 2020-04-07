@@ -9,7 +9,13 @@ const getOneUserById = _id => Users
 
 const createOneUser = data => Users.create( data );
 
+const updateById = (id, data) => Users
+    .findByIdAndUpdate( { _id: id, is_active: true }, { ...data }, { new: true } )
+    .populate({ path: 'series', model: 'series' })
+    .populate( { path: 'movies', model: 'movies' } );
+
 module.exports = {
     getOneUserById,
-    createOneUser
+    createOneUser,
+    updateById,
 };
