@@ -2,6 +2,7 @@ const UserResolver = require( './UserResolvers' );
 const MovieResolver = require( './MovieResolvers' );
 const VideoResolver = require( './VideoResolvers' );
 const SerieResolver = require( './SerieResolvers' );
+const EpisodeResolver = require( './EpisodeResolvers' );
 
 module.exports = {
     Video: {
@@ -17,10 +18,12 @@ module.exports = {
         ...MovieResolver.Query,
         ...VideoResolver.Query,
         ...SerieResolver.Query,
+        ...EpisodeResolver.Query,
     },
     Mutation: {
         ...UserResolver.Mutation,
         ...MovieResolver.Mutation,
-        ...SerieResolver.Mutation
+        ...SerieResolver.Mutation,
+        ...EpisodeResolver.Mutation,
     }
 };

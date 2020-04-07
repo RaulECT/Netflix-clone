@@ -21,15 +21,18 @@ type Query{
   getByCategory(category: String!): [Video]!
   getByName(name: String!): [Video]!
   getUserById(id: ID!): User!
+  getEpisodeById(id: ID!): Episode!
 }
 
 type Mutation{
   createUser(data: UserCreateInput!): User!
   createMovie(data: MovieCreateInput!): Movie!
   createSerie(data: SerieCreateInput!): Serie!
+  createEpisode(data: EpisodeCreateInput): Episode!
   updateUser(data: UserUpdateInput!): User!
   updateMovie(data: MovieUpdateInput!): Movie!
   updateSerie(data: SerieUpdateInput!): Serie!
+  updateEpisode(data: EpisodeUpdateInput): Episode!
   deleteUser(id: ID!): User!
   deleteMovie(id: ID!): Movie!
   deleteSerie(id: ID!): Serie!
@@ -119,6 +122,17 @@ input SerieCreateInput{
   is_avaible: Boolean
 }
 
+input EpisodeCreateInput{
+  serie: ID!
+  name: String!
+  image_cover_uri: String!
+  duration: Int!
+  description: String!
+  emition_date: String!
+  video_uri: String!
+  is_avaible: Boolean
+}
+
 input UserUpdateInput{
   first_name: String
   last_name: String
@@ -151,6 +165,17 @@ input SerieUpdateInput{
   is_avaible: Boolean
   episodes: [ID]
   liked_by: [ID]
+}
+
+input EpisodeUpdateInput{
+  name: String
+  image_cover_uri: String
+  duration: Int
+  description: String
+  emition_date: String
+  video_uri: String
+  views: Int
+  is_avaible: Boolean
 }
 
 enum CATEGORIES{
