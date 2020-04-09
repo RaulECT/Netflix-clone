@@ -37,6 +37,8 @@ type Mutation{
   deleteMovie(id: ID!): Movie!
   deleteSerie(id: ID!): Serie!
   deleteEpisode(id: ID!): Episode!
+  rateMovie( movie_id: ID!, user_id: ID, rate: Int! ): Movie!
+  rateSerie( serie_id: ID!, user_id: ID, rate: Int! ): Serie!
 }
 
 type Movie implements Video{
@@ -183,4 +185,9 @@ enum CATEGORIES{
   Action
   Romance
   Comedy
+}
+
+enum VIDEO_TYPES{
+  Movie
+  Serie
 }
