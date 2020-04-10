@@ -1,4 +1,4 @@
-const { createOneSerie, updateById, deleteById } = require('../../services/SerieService');
+const { createOneSerie, updateById, deleteById, getOneSerieById } = require('../../services/SerieService');
 const { deleteCollectionByIds } = require( '../../services/EpisodeService' );
 
 const createSerie = async (_, { data }) => {
@@ -18,8 +18,18 @@ const deleteSerie = async (_, { id }) => {
     return serie;
 };
 
+const rateSerie = async (_, { serie_id, user_id, rate }) => {
+    const serie = await getOneSerieById( serie_id );
+    const serieLikes = [...serie.liked_by, user_id];
+    const serieRate = (serie.rating + rate) / serieLikes.length;
+    const serieUpdated = await updateById( serie_id, { liked_by: serieLikes, rating: serieRate } );
+
+    return serieUpdated;
+};
+
 module.exports = {
     createSerie,
     updateSerie,
     deleteSerie,
+    rateSerie,
 };

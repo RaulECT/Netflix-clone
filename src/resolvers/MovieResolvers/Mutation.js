@@ -17,13 +17,7 @@ const deleteMovie = async (_, { id }) => {
 
 const rateMovie = async (_, { movie_id, user_id, rate }) => {
     const movie = await getMovieById( movie_id );
-    const movieLikes = [...movie.liked_by];
-    const isLikedByUserBefore = movieLikes.find( u => u === user_id );
-
-    if ( isLikedByUserBefore ) {
-        movieLikes.push( user_id );
-    }
-
+    const movieLikes = [...movie.liked_by, user_id];
     const movieRate = (movie.rating + rate) / movieLikes.length;
     const movieUpdated = await updateById( movie_id, { liked_by: movieLikes, rating: movieRate } );
 
