@@ -23,9 +23,18 @@ const addMovieToFavorites = async (_, { movie_id, user_id } ) => {
     return userUpdated;
 };
 
+const addSerieToFavorites = async (_, { serie_id, user_id } ) => {
+    const user = await getOneUserById( user_id );
+    const favoriteSeries = [ ...user.series, serie_id];
+    const userUpdated = await updateById( user_id, { series: favoriteSeries } );
+
+    return userUpdated;
+};
+
 module.exports = {
     createUser,
     updateUser,
     deleteUser,
     addMovieToFavorites,
+    addSerieToFavorites,
 };
