@@ -39,6 +39,8 @@ type Mutation{
   deleteEpisode(id: ID!): Episode!
   rateMovie( movie_id: ID!, user_id: ID, rate: Int! ): Movie!
   rateSerie( serie_id: ID!, user_id: ID, rate: Int! ): Serie!
+  addMovieToFavorites( movie_id: ID!, user_id: ID! ): User!
+  addSerieToFavorites( serie_id: ID!, user_id: ID! ): User!
 }
 
 type Movie implements Video{

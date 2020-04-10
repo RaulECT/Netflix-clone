@@ -2,7 +2,7 @@ const Series = require('../models/Series');
 
 const getOneSerieById = _id => Series
     .findById( {_id, is_avaible: true} )
-    .populate({ path: 'episodes', model: 'episodes' });
+    .populate({ path: 'episodes', model: 'episodes' })
     .populate({ path: 'liked_by', model: 'users' });
 
 const getAllSeries = () => Series

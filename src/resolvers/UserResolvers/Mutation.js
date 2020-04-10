@@ -1,4 +1,4 @@
-const { createOneUser, updateById, deleteById } = require( '../../services/UserService' );
+const { createOneUser, updateById, deleteById, getOneUserById } = require( '../../services/UserService' );
 
 const createUser = async (_, { data }) => {
     const user = await createOneUser( data );
@@ -15,8 +15,17 @@ const deleteUser = async (_, { id }) => {
     return user;
 };
 
+const addMovieToFavorites = async (_, { movie_id, user_id } ) => {
+    const user = await getOneUserById( user_id );
+    const favoriteMovies = [ ...user.movies, movie_id];
+    const userUpdated = await updateById( user_id, { movies: favoriteMovies } );
+
+    return userUpdated;
+};
+
 module.exports = {
     createUser,
     updateUser,
     deleteUser,
+    addMovieToFavorites,
 };
