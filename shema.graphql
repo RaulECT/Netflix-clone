@@ -1,3 +1,5 @@
+directive @auth on FIELD_DEFINITION | FIELD
+
 interface Video {
   _id: ID!
   name: String!
@@ -12,37 +14,37 @@ interface Video {
 }
 
 type Query{
-  getVideos: [Video]!
-  getMovies: [Movie]!
-  getSeries: [Serie]!
-  getEpisodes: [Episode]!
-  getRecents: [Video]!
-  getBestRated: [Video]!
-  getByCategory(category: String!): [Video]!
-  getByName(name: String!): [Video]!
-  getUserById(id: ID!): User!
-  getEpisodeById(id: ID!): Episode!
-  getUserFavoritesMovies(id: ID!): [Movie]!
-  getUserFavoritesSeries(id: ID!): [Serie]!
+  getVideos: [Video]!@auth
+  getMovies: [Movie]!@auth
+  getSeries: [Serie]!@auth
+  getEpisodes: [Episode]!@auth
+  getRecents: [Video]!@auth
+  getBestRated: [Video]!@auth
+  getByCategory(category: String!): [Video]!@auth
+  getByName(name: String!): [Video]!@auth
+  getUserById(id: ID!): User!@auth
+  getEpisodeById(id: ID!): Episode!@auth
+  getUserFavoritesMovies(id: ID!): [Movie]!@auth
+  getUserFavoritesSeries(id: ID!): [Serie]!@auth
 }
 
 type Mutation{
   createUser(data: UserCreateInput!): User!
-  createMovie(data: MovieCreateInput!): Movie!
-  createSerie(data: SerieCreateInput!): Serie!
-  createEpisode(data: EpisodeCreateInput): Episode!
-  updateUser(data: UserUpdateInput!, id: ID!): User!
-  updateMovie(data: MovieUpdateInput!, id: ID!): Movie!
-  updateSerie(data: SerieUpdateInput!, id: ID!): Serie!
-  updateEpisode(data: EpisodeUpdateInput, id: ID!): Episode!
-  deleteUser(id: ID!): User!
-  deleteMovie(id: ID!): Movie!
-  deleteSerie(id: ID!): Serie!
-  deleteEpisode(id: ID!): Episode!
-  rateMovie( movie_id: ID!, user_id: ID, rate: Int! ): Movie!
-  rateSerie( serie_id: ID!, user_id: ID, rate: Int! ): Serie!
-  addMovieToFavorites( movie_id: ID!, user_id: ID! ): User!
-  addSerieToFavorites( serie_id: ID!, user_id: ID! ): User!
+  createMovie(data: MovieCreateInput!): Movie!@auth
+  createSerie(data: SerieCreateInput!): Serie!@auth
+  createEpisode(data: EpisodeCreateInput): Episode!@auth
+  updateUser(data: UserUpdateInput!, id: ID!): User!@auth
+  updateMovie(data: MovieUpdateInput!, id: ID!): Movie!@auth
+  updateSerie(data: SerieUpdateInput!, id: ID!): Serie!@auth
+  updateEpisode(data: EpisodeUpdateInput, id: ID!): Episode!@auth
+  deleteUser(id: ID!): User!@auth
+  deleteMovie(id: ID!): Movie!@auth
+  deleteSerie(id: ID!): Serie!@auth
+  deleteEpisode(id: ID!): Episode!@auth
+  rateMovie( movie_id: ID!, user_id: ID, rate: Int! ): Movie!@auth
+  rateSerie( serie_id: ID!, user_id: ID, rate: Int! ): Serie!@auth
+  addMovieToFavorites( movie_id: ID!, user_id: ID! ): User!@auth
+  addSerieToFavorites( serie_id: ID!, user_id: ID! ): User!@auth
   login( email: String!, password: String! ): Auth!
 }
 
