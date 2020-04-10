@@ -22,6 +22,8 @@ type Query{
   getByName(name: String!): [Video]!
   getUserById(id: ID!): User!
   getEpisodeById(id: ID!): Episode!
+  getUserFavoritesMovies(id: ID!): [Movie]!
+  getUserFavoritesSeries(id: ID!): [Serie]!
 }
 
 type Mutation{
@@ -187,9 +189,4 @@ enum CATEGORIES{
   Action
   Romance
   Comedy
-}
-
-enum VIDEO_TYPES{
-  Movie
-  Serie
 }
