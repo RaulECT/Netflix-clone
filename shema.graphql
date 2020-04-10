@@ -43,6 +43,7 @@ type Mutation{
   rateSerie( serie_id: ID!, user_id: ID, rate: Int! ): Serie!
   addMovieToFavorites( movie_id: ID!, user_id: ID! ): User!
   addSerieToFavorites( serie_id: ID!, user_id: ID! ): User!
+  login( email: String!, password: String! ): Auth!
 }
 
 type Movie implements Video{
@@ -98,6 +99,11 @@ type User{
   movies: [Movie]!
   profile_img: String
   is_active: Boolean!
+}
+
+type Auth{
+  token: String!
+  message: String!
 }
 
 input UserCreateInput{

@@ -1,4 +1,5 @@
 const { createOneUser, updateById, deleteById, getOneUserById } = require( '../../services/UserService' );
+const authenticate = require('../../utils/authenticate');
 
 const createUser = async (_, { data }) => {
     const user = await createOneUser( data );
@@ -31,10 +32,21 @@ const addSerieToFavorites = async (_, { serie_id, user_id } ) => {
     return userUpdated;
 };
 
+const login = async(_, params) => {
+    const token = await authenticate( params )
+        .catch( e => { throw e; } );
+    
+    return {
+        token,
+        message: 'Login succesful!'
+    };
+};
+
 module.exports = {
     createUser,
     updateUser,
     deleteUser,
     addMovieToFavorites,
     addSerieToFavorites,
+    login,
 };
