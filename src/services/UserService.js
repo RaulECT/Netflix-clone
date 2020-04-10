@@ -1,5 +1,10 @@
 const Users = require( '../models/Users' );
 
+const getOneUserByEmail = email => Users
+    .findOne({ email, is_active: true })
+    .populate({ path: 'series', model: 'series' })
+    .populate( { path: 'movies', model: 'movies' } );
+
 const getOneUserById = _id => Users
     .findById({
         _id, is_active: true
@@ -24,4 +29,5 @@ module.exports = {
     createOneUser,
     updateById,
     deleteById,
+    getOneUserByEmail,
 };
