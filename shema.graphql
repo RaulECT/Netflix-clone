@@ -47,6 +47,9 @@ type Mutation{
   addMovieToFavorites( movie_id: ID!, user_id: ID! ): User!@auth
   addSerieToFavorites( serie_id: ID!, user_id: ID! ): User!@auth
   login( email: String!, password: String! ): Auth!
+  viewMovie( id: ID! ): Movie!
+  viewSerie( id: ID! ): Serie!
+  viewEpisode( id: ID! ): Episode!
 }
 
 type Movie implements Video{

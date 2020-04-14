@@ -44,9 +44,17 @@ const rateMovie = async (_, { movie_id, user_id, rate }) => {
     return movieUpdated;
 };
 
+const viewMovie = async (_, { id } ) => {
+    const movie = await getMovieById( id );
+    const views = movie.views + 1 ;
+    const movieUpdated = await updateById( id, { views } );
+    return movieUpdated;
+};
+
 module.exports = {
     createMovie,
     updateMovie,
     deleteMovie,
     rateMovie,
+    viewMovie,
 };
