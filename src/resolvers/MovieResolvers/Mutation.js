@@ -1,5 +1,5 @@
 const { createOneMovie, updateById, deleteById, getMovieById } = require( '../../services/MovieService' );
-const storage = require( '../../utils/storage' );
+const { uploadFile } = require( '../../utils/storage' );
 
 const createMovie = async (_, { data }) => {
     const movieCover = await uploadFile( data.image_cover_uri );
@@ -42,14 +42,6 @@ const rateMovie = async (_, { movie_id, user_id, rate }) => {
     const movieUpdated = await updateById( movie_id, { liked_by: movieLikes, rating: movieRate } );
 
     return movieUpdated;
-};
-
-const uploadFile = async (file, isVideo = false) => {
-    const { createReadStream } = await file;
-    const stream = createReadStream();
-    const storageInfo = await storage({ stream }, isVideo);
-    console.log( 'Storage info', storageInfo);
-    return storageInfo.secure_url;
 };
 
 module.exports = {

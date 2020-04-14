@@ -17,4 +17,15 @@ const storage = ({stream}, isVideo = false) => {
     });
 };
 
-module.exports = storage;
+const uploadFile = async (file, isVideo = false) => {
+    const { createReadStream } = await file;
+    const stream = createReadStream();
+    const storageInfo = await storage({ stream }, isVideo);
+    console.log( 'Storage info', storageInfo);
+    return storageInfo.secure_url;
+};
+
+module.exports = {
+    storage,
+    uploadFile,
+};
