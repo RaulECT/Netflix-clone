@@ -1,3 +1,4 @@
+scalar Upload
 directive @auth on FIELD_DEFINITION | FIELD
 
 interface Video {
@@ -120,11 +121,11 @@ input MovieCreateInput{
   name: String!
   description: String!
   duration: Int!
-  image_cover_uri: String!
+  image_cover_uri: Upload!
   category: CATEGORIES!
   date: String!
-  video_uri: String!
-  trailer_uri: String!
+  video_uri: Upload!
+  trailer_uri: Upload!
   is_avaible: Boolean
 }
 
@@ -162,10 +163,10 @@ input UserUpdateInput{
 input MovieUpdateInput{
   name: String
   description: String
-  image_cover_uri: String
+  image_cover_uri: Upload
   rating: Float
-  video_uri: String
-  trailer_uri: String
+  video_uri: Upload
+  trailer_uri: Upload
   views: Int
   is_avaible: Boolean
   liked_by: [ID]
