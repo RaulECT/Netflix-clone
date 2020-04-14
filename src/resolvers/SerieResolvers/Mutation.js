@@ -1,13 +1,26 @@
 const { createOneSerie, updateById, deleteById, getOneSerieById } = require('../../services/SerieService');
 const { deleteCollectionByIds } = require( '../../services/EpisodeService' );
+const { uploadFile } = require( '../../utils/storage' );
 
 const createSerie = async (_, { data }) => {
-    const serie = await createOneSerie( data );
+    const serieCover = await uploadFile( data.image_cover_uri );
+    const serieTrailer = await uploadFile( data.trailer_uri );
+    const serie = await createOneSerie( {
+        ...data,
+        image_cover_uri: serieCover,
+        trailer_uri: serieTrailer
+    } );
     return serie;
 };
 
 const updateSerie = async (_, { data, id }) => {
-    const serie = await updateById( id, data );
+    const serieCover = await uploadFile( data.image_cover_uri );
+    const serieTrailer = await uploadFile( data.trailer_uri );
+    const serie = await updateById( id, {
+        ...data,
+        image_cover_uri: serieCover,
+        trailer_uri: serieTrailer
+    } );
     console.log(serie);
     return serie;
 };
