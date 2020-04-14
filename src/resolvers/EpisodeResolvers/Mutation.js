@@ -1,4 +1,4 @@
-const { createOneEpisode, updateById, deleteById } = require( '../../services/EpisodeService' );
+const { createOneEpisode, updateById, deleteById, getOneEpisodeById } = require( '../../services/EpisodeService' );
 const { uploadFile } = require( '../../utils/storage' );
 
 const createEpisode = async (_, { data }) => {
@@ -28,8 +28,16 @@ const deleteEpisode = async (_, { id }) => {
     return episode;
 };
 
+const viewEpisode = async (_, { id } ) => {
+    const episode = await getOneEpisodeById( id );
+    const views = episode.views + 1 ;
+    const episodeUpdated = await updateById( id, { views } );
+    return episodeUpdated;
+};
+
 module.exports = {
     createEpisode,
     updateEpisode,
     deleteEpisode,
+    viewEpisode,
 };
