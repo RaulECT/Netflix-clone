@@ -40,9 +40,17 @@ const rateSerie = async (_, { serie_id, user_id, rate }) => {
     return serieUpdated;
 };
 
+const viewSerie = async (_, { id } ) => {
+    const serie = await getOneSerieById( id );
+    const views = serie.views + 1 ;
+    const serieUpdated = await updateById( id, { views } );
+    return serieUpdated;
+};
+
 module.exports = {
     createSerie,
     updateSerie,
     deleteSerie,
     rateSerie,
+    viewSerie,
 };
